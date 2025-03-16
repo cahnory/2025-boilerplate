@@ -14,12 +14,16 @@
     ]
   },
   "scripts": {
+    "check": "pnpm check:commits && pnpm check:rebase",
+    "check:commits": "bash scripts/check-commits.sh $npm_package_config_baseBranch",
+    "check:rebase": "bash scripts/check-rebase.sh $npm_package_config_baseBranch",
     "commit": "git-cz"
   },
   "config": {
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
-    }
+    },
+    "baseBranch": "main"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
