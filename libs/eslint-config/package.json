@@ -1,0 +1,50 @@
+{
+  "name": "@2025-boilerplate/eslint-config",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --noEmit false",
+    "build:watch": "pnpm build --watch",
+    "check": "concurrently -r -g pnpm:check:types pnpm:check:lint pnpm:check:format",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint .",
+    "check:types": "tsc --noEmit",
+    "fix": "concurrently -r -g pnpm:fix:lint pnpm:fix:format",
+    "fix:format": "prettier --write --list-different .",
+    "fix:lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@eslint/compat": "^1.2.7",
+    "@eslint/js": "^9.21.0",
+    "@typescript-eslint/utils": "^8.26.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-perfectionist": "^4.9.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "typescript-eslint": "^8.26.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "eslint": "^9.21.0"
+  }
+}
