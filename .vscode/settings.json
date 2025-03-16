@@ -8,5 +8,6 @@
     "**/apps/*/dist/**": true,
     "**/libs/*/dist/**": true
   },
-  "javascript.preferences.importModuleSpecifier": "project-relative"
+  "javascript.preferences.importModuleSpecifier": "project-relative",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
