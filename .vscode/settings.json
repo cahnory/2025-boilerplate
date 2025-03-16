@@ -1,0 +1,12 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "files.readonlyInclude": {
+    "**/node_modules/**": true,
+    "**/apps/*/dist/**": true,
+    "**/libs/*/dist/**": true
+  },
+  "javascript.preferences.importModuleSpecifier": "project-relative"
+}
