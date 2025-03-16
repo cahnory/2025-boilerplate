@@ -1,0 +1,9 @@
+# npm
+node_modules
+
+# dist
+apps/*/dist
+libs/*/dist
+
+# Misc
+.DS_Store
