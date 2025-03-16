@@ -1,4 +1,36 @@
 {
+  "[ignore]": {
+    "editor.defaultFormatter": "lkrms.inifmt"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "lkrms.inifmt"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.formatOnSave": true,
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true
@@ -9,5 +41,9 @@
     "**/libs/*/dist/**": true
   },
   "javascript.preferences.importModuleSpecifier": "project-relative",
+  "prettier.enable": true,
+  // Temporary fix for prettier-vscode issue #3040
+  // see: https://github.com/prettier/prettier-vscode/issues/3040#issuecomment-1793748475
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
