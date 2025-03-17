@@ -19,10 +19,11 @@
   "scripts": {
     "build": "tsc --noEmit false",
     "build:watch": "pnpm build --watch",
-    "check": "concurrently -r -g pnpm:check:types pnpm:check:lint pnpm:check:format",
+    "check": "concurrently -r -g pnpm:check:types pnpm:check:lint pnpm:check:format pnpm:check:unused",
     "check:format": "prettier --check .",
     "check:lint": "eslint .",
     "check:types": "tsc --noEmit",
+    "check:unused": "knip",
     "fix": "concurrently -r -g pnpm:fix:lint pnpm:fix:format",
     "fix:format": "prettier --write --list-different .",
     "fix:lint": "eslint . --fix"
@@ -41,6 +42,7 @@
   "devDependencies": {
     "concurrently": "^9.1.2",
     "eslint": "^9.21.0",
+    "knip": "^5.46.0",
     "prettier": "^3.5.3",
     "typescript": "^5.7.3"
   },
