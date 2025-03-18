@@ -13,11 +13,21 @@
       "libs/*"
     ]
   },
+  "packageManager": "pnpm@10.6.3",
   "scripts": {
-    "check": "pnpm check:commits && pnpm check:rebase",
+    "build": "turbo run build --continue --log-order=grouped",
+    "build:watch": "turbo run build:watch --continue --log-order=grouped",
+    "check": "turbo run check --continue --log-order=grouped",
     "check:commits": "bash scripts/check-commits.sh $npm_package_config_baseBranch",
+    "check:format": "turbo run check:format --continue --log-order=grouped",
+    "check:lint": "turbo run check:lint --continue --log-order=grouped",
     "check:rebase": "bash scripts/check-rebase.sh $npm_package_config_baseBranch",
-    "commit": "git-cz"
+    "check:types": "turbo run check:types --continue --log-order=grouped",
+    "check:unused": "turbo run check:unused --continue --log-order=grouped",
+    "commit": "git-cz",
+    "fix": "turbo run fix --continue --log-order=grouped",
+    "fix:format": "turbo run fix:format --continue --log-order=grouped",
+    "fix:lint": "turbo run fix:lint --continue --log-order=grouped"
   },
   "config": {
     "commitizen": {
@@ -31,8 +41,10 @@
     "@commitlint/config-conventional": "^19.8.0",
     "@commitlint/cz-commitlint": "^19.8.0",
     "commitizen": "^4.3.1",
+    "concurrently": "^9.1.2",
     "eslint": "^9.21.0",
     "prettier": "^3.5.3",
+    "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   }
 }

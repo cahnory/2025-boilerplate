@@ -1,5 +1,8 @@
 # npm
 node_modules
 
+# Turborepo
+.turbo
+
 # Misc
 .DS_Store

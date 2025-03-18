@@ -1,0 +1,47 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "tasks": {
+    "//#check:commits": {},
+    "//#check:rebase": {},
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "build:watch": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+
+    "check": {
+      "dependsOn": [
+        "//#check:commits",
+        "//#check:rebase",
+        "^build",
+        "@2025-boilerplate/eslint-config#build"
+      ]
+    },
+    "check:format": {},
+    "check:lint": {
+      "dependsOn": ["^build", "@2025-boilerplate/eslint-config#build"]
+    },
+    "check:types": {
+      "dependsOn": ["^build"]
+    },
+    "check:unused": {},
+
+    "fix": {
+      "dependsOn": ["^build"]
+    },
+    "fix:format": {},
+    "fix:lint": {
+      "dependsOn": ["^build"]
+    }
+  },
+  "globalDependencies": [
+    ".eslintrc",
+    ".prettierrc",
+    "tsconfig.base.json",
+    "tsconfig.react.json"
+  ]
+}
