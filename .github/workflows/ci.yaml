@@ -1,0 +1,97 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  check:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node-version:
+          - 23.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout to ${{ github.ref }}
+        uses: actions/checkout@v4
+      - name: Setup turbo cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/turbo
+          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.os }}-node-${{ matrix.node-version }}-turbo-
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: ^10.0.0
+      - name: Install node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+      - name: Check types
+        run: pnpm check:types
+        if: always()
+      - name: Check lint
+        run: pnpm check:lint
+        if: always()
+      - name: Check format
+        run: pnpm check:format
+        if: always()
+      - name: Check commits
+        run: pnpm check:commits
+        if: always()
+
+  test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node-version:
+          - 22.x
+          - 23.x
+        include:
+          - os: windows-latest
+            node-version: 23.x
+          - os: macos-latest
+            node-version: 23.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout to ${{ github.ref }}
+        uses: actions/checkout@v4
+      - name: Setup turbo cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.cache/turbo
+          key: ${{ matrix.os }}-node-${{ matrix.node-version }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ matrix.os }}-node-${{ matrix.node-version }}-turbo-
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: ^10.0.0
+      - name: Install node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+      - name: Build
+        run: pnpm build
