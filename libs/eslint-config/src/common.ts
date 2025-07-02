@@ -5,11 +5,11 @@ import importEslintPlugin from "eslint-plugin-import";
 import perfectionist from "eslint-plugin-perfectionist";
 import unusedImportEslintPlugin from "eslint-plugin-unused-imports";
 
-import type { ConfigArray } from "./types.d.ts";
+import type { Config, ConfigArray } from "./types.d.ts";
 
 export const commonESLintConfig = [
   importEslintPlugin.flatConfigs.recommended,
-  eslintJs.configs.recommended,
+  eslintJs.configs.recommended as Config,
   prettierEslintConfig,
   perfectionist.configs["recommended-natural"],
   {
