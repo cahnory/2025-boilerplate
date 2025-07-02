@@ -3,3 +3,4 @@ import type { Linter } from "eslint";
 
 export type Config = FlatConfig.Config | Linter.Config;
 export type ConfigArray = Array<Config>;
+export type Plugin = NonNullable<Config["plugins"]>[string];

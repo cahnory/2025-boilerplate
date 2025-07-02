@@ -1,11 +1,11 @@
 import importEslintPlugin from "eslint-plugin-import";
 import { configs as typescriptEslintConfigs } from "typescript-eslint";
 
-import type { ConfigArray } from "./types.js";
+import type { Config, ConfigArray } from "./types.js";
 
 export const typescriptEslintConfig = [
-  importEslintPlugin.flatConfigs.typescript,
-  ...typescriptEslintConfigs.recommendedTypeChecked,
+  importEslintPlugin.flatConfigs.typescript as Config,
+  ...(typescriptEslintConfigs.recommendedTypeChecked as ConfigArray),
   {
     name: "@2025-boilerplate/eslint-config/typescript",
 
