@@ -1,8 +1,4 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema-jsonc.json",
   "ignore": ["./dist/**/*"],
-  "ignoreDependencies": [
-    // used by eslint-plugin-import when settings["import/resolver"].typescript is defined
-    "eslint-import-resolver-typescript",
-  ],
 }
