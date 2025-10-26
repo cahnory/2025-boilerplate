@@ -5,13 +5,13 @@ import importEslintPlugin from "eslint-plugin-import";
 import perfectionist from "eslint-plugin-perfectionist";
 import unusedImportEslintPlugin from "eslint-plugin-unused-imports";
 
-import type { Config, ConfigArray } from "./types.d.ts";
+import type { Config, ConfigArray, Plugin } from "./types.d.ts";
 
 export const commonESLintConfig = [
-  importEslintPlugin.flatConfigs.recommended,
+  importEslintPlugin.flatConfigs.recommended as Config,
   eslintJs.configs.recommended as Config,
   prettierEslintConfig,
-  perfectionist.configs["recommended-natural"],
+  perfectionist.configs["recommended-natural"] as Config,
   {
     name: "@2025-boilerplate/eslint-config/common",
 
@@ -23,7 +23,7 @@ export const commonESLintConfig = [
       reportUnusedDisableDirectives: true,
     },
     plugins: {
-      "unused-imports": fixupPluginRules(unusedImportEslintPlugin),
+      "unused-imports": fixupPluginRules(unusedImportEslintPlugin) as Plugin,
     },
     rules: {
       "array-callback-return": [
